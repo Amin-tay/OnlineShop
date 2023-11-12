@@ -2,12 +2,12 @@
 </p>
 
 
-## Online Shop 
+# Online Shop 
 
-This is a simple online shop project, which allows you to add Categories, add Products, create discount codes, add products to cart and order products. 
+This is a simple online shop project which allows you to add Categories, add Products, create discount codes as Admin and add products to cart and order products as Normal User. 
 
 
-# Running the project
+## Running the project
 - clone the code
 - run `npm install`
 - run `composer install `
