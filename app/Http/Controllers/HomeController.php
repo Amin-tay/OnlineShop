@@ -112,10 +112,11 @@ class HomeController extends Controller
         $product = Product::find($productId);
         return $product->quantity < (int)$quantity;
     }
+
     public function addToCart(Request $request)
     {
 
-        if (Auth::user()->user_type == '1') {
+        if (Auth::user()->hasAnyRole('superAdmin', 'normalAdmin')) {
             return redirect()->back()->with('warning', "You are an Admin, You cannot buy stuff :)");
         }
 
@@ -125,7 +126,7 @@ class HomeController extends Controller
 
         $productId = $request->productId;
         $product = Product::find($productId);
-        $quantity =  $request->quantity;
+        $quantity = $request->quantity;
         $cart = session('cart');
 
         if (empty($quantity)) {
@@ -157,11 +158,12 @@ class HomeController extends Controller
         $totalCost = 0;
         foreach ($cart as $productId => $quantity) {
             $product = Product::find($productId);
-            $totalCost += ((float)$product->price * (float) $quantity);
+            $totalCost += ((float)$product->price * (float)$quantity);
         }
         //  dd($totalCost);
         return $totalCost;
     }
+
     public function viewCart()
     {
         // dd(session());
@@ -186,10 +188,11 @@ class HomeController extends Controller
 
         return view('user.viewCart', compact('products', 'totalCost'));
     }
+
     public function getfinalPrice($totalCost, $discount_code)
     {
         if ($discount_code->discount_type == 'fixed') {
-            return  $totalCost - $discount_code->discount_amount;
+            return $totalCost - $discount_code->discount_amount;
         } else {
             return round(($discount_code->discount_amount * $totalCost / 100), 2);
         }
@@ -204,6 +207,7 @@ class HomeController extends Controller
             return $discount_code->discount_amount . "% Discount!";
         }
     }
+
     public function addDiscountCode(Request $request)
     {
 
@@ -211,11 +215,11 @@ class HomeController extends Controller
         $code = $request->code;
         $discount_code = DiscountCode::where('code', '=', $code)->first();
 
-        if ($discount_code->quantity != -1 &&  $discount_code->quantity >=  $discount_code->used_number) {
+        if ($discount_code->quantity != -1 && $discount_code->quantity >= $discount_code->used_number) {
             return redirect()->back()->with('error', 'Code Can not be used any more!');
         } else {
 
-            $finalPrice =  $this->getfinalPrice($totalCost, $discount_code);
+            $finalPrice = $this->getfinalPrice($totalCost, $discount_code);
             $explainCode = $this->getExplainCode($discount_code);
 
             session()->put('discount_code', $discount_code);
@@ -227,6 +231,7 @@ class HomeController extends Controller
                 ->with('success', 'Discount Code Added!');
         }
     }
+
     public function removeDiscountCode(Request $request)
     {
         session()->forget('discount_code');
@@ -237,6 +242,7 @@ class HomeController extends Controller
         return redirect()->back()
             ->with('warning', 'Discount Code Deleted!');
     }
+
     public function refreshCart()
     {
         if (session()->has('discount_code')) {
@@ -246,8 +252,13 @@ class HomeController extends Controller
             session()->put('final_price', $this->getfinalPrice($sum_price, $discount_code));
         }
     }
+
     public function order(Request $request)
     {
+        if (Auth::user()->hasAnyRole('superAdmin', 'normalAdmin')) {
+            return redirect()->back()->with('warning', "You are an Admin, You cannot buy stuff :)");
+        }
+
         $user = Auth::user();
         $cart = session('cart');
         // session('cart')['6'] = '44';
@@ -256,7 +267,7 @@ class HomeController extends Controller
 
         // return redirect()->back()->with('success', 'test');
         // dd(session('cart'), $cart);
-        //todo check for avaliable quanitity and decrease 
+        //todo check for avaliable quanitity and decrease
         // dd(empty($cart));
 
 
@@ -293,7 +304,6 @@ class HomeController extends Controller
         }
 
 
-
         //        dd($sum_price);
         $order = Order::create([
             'user_id' => $user->id,
@@ -310,7 +320,7 @@ class HomeController extends Controller
 
         foreach ($cart as $key => $value) {
             $product = Product::find($key);
-            $product->quantity = (int) $product->quantity - (int)$value;
+            $product->quantity = (int)$product->quantity - (int)$value;
             $product->update();
             OrderProduct::create([
                 'order_id' => $order->id,

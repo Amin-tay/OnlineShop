@@ -10,8 +10,12 @@ class DiscountCodeController extends Controller
     /**
      * Display a listing of the resource.
      */
+//    public function testFunction(){
+//        return back()->with('success', 'back!');
+//    }
     public function index()
     {
+//        $this->testFunction();
         $discountCodes = DiscountCode::all();
 
         foreach ($discountCodes as $discountCode) {
@@ -31,6 +35,10 @@ class DiscountCodeController extends Controller
      */
     public function create()
     {
+        if (!auth()->user()->hasPermissionTo('add discount code')) {
+            return to_route('admin.discountCode.index')->with('danger', 'You are not allowed to add Discount Code!');
+        }
+
         return view('admin.discountCodes.create');
     }
 
@@ -39,6 +47,10 @@ class DiscountCodeController extends Controller
      */
     public function store(Request $request)
     {
+        if (!auth()->user()->hasPermissionTo('add discount code')) {
+            return to_route('admin.discountCode.index')->with('danger', 'You are not allowed to add Discount Code!');
+        }
+
         $quantity = empty($request->quantity) ? '-1' : $request->quantity;
         DiscountCode::create([
             'code' => $request->code,

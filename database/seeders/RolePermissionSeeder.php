@@ -42,7 +42,7 @@ class RolePermissionSeeder extends Seeder
 
         //normal admin permissions
         $normalAdminRole->givePermissionTo($editCategoryPermission);
-        $normalAdminRole->givePermissionTo($editCategoryPermission);
+        $normalAdminRole->givePermissionTo($editProductPermission);
 
         $normalAdminRole->givePermissionTo($addDiscountCode);
     }

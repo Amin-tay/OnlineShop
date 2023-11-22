@@ -25,6 +25,10 @@ class ProductController extends Controller
      */
     public function create()
     {
+        if (!auth()->user()->hasPermissionTo('add product')) {
+            return to_route('admin.products.index')->with('danger', 'You are not allowed to add Product!');
+        }
+
         $categories = Category::all();
         return view('admin.products.create', compact('categories'));
     }
@@ -34,6 +38,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        if (!auth()->user()->hasPermissionTo('add product')) {
+            return to_route('admin.products.index')->with('danger', 'You are not allowed to add Product!');
+        }
+
         $image = substr($request->file('image')->store('public/products'), 7);
 //        dd($request);
         Product::create([
@@ -60,6 +68,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        if (!auth()->user()->hasPermissionTo('edit product')) {
+            return to_route('admin.products.index')->with('danger', 'You are not allowed to edit Product!');
+        }
+
         $categories = Category::all();
         return view('admin.products.edit', compact('categories', 'product'));
     }
@@ -69,6 +81,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        if (!auth()->user()->hasPermissionTo('edit product')) {
+            return to_route('admin.products.index')->with('danger', 'You are not allowed to edit Product!');
+        }
+
         $image = $product->image;
 
         if ($request->hasFile('image')) {
@@ -92,6 +108,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if (!auth()->user()->hasPermissionTo('delete product')) {
+            return to_route('admin.products.index')->with('danger', 'You are not allowed to delete Product!');
+        }
+
         $product->delete();
         return to_route('admin.products.index')->with('warning', 'Product Deleted!');
     }
