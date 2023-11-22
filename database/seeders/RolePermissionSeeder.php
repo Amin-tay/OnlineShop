@@ -26,6 +26,10 @@ class RolePermissionSeeder extends Seeder
         $editProductPermission = Permission::create(['name' => 'edit product']);
         $deleteProductPermission = Permission::create(['name' => 'delete product']);
 
+        $addDiscountCode = Permission::create(['name' => 'add discount code']);
+
+
+        //super admin permissions
         $superAdminRole->givePermissionTo($addCategoryPermission);
         $superAdminRole->givePermissionTo($editCategoryPermission);
         $superAdminRole->givePermissionTo($deleteCategoryPermission);
@@ -34,8 +38,12 @@ class RolePermissionSeeder extends Seeder
         $superAdminRole->givePermissionTo($editProductPermission);
         $superAdminRole->givePermissionTo($deleteProductPermission);
 
+        $superAdminRole->givePermissionTo($addDiscountCode);
 
+        //normal admin permissions
         $normalAdminRole->givePermissionTo($editCategoryPermission);
         $normalAdminRole->givePermissionTo($editCategoryPermission);
+
+        $normalAdminRole->givePermissionTo($addDiscountCode);
     }
 }

@@ -18,7 +18,7 @@ class AdminMiddleware
         if (!auth()->check()) {
             return redirect('login');
         }
-        if (auth()->user()->user_type != '1') {
+        if (!auth()->user()->hasAnyRole('superAdmin', 'normalAdmin')) {
             abort(403);
         }
         return $next($request);

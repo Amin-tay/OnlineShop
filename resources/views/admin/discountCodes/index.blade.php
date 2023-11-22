@@ -1,6 +1,7 @@
 <x-admin-layout>
     <h1 class="text-center my-5">Discount Code Index</h1>
 
+
     <div class="text-center">
         <a class="btn btn-success text-center mx-auto mb-4" href="{{route('admin.discountCodes.create')}}">Add Discount Code</a>
 
@@ -10,11 +11,11 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Code</th>
-                    <th scope="col">Qunatity</th>
+                    <th scope="col">Quantity</th>
                     <th scope="col">Uses number</th>
                     <th scope="col">Discount Type</th>
                     <th scope="col">Amount</th>
-                    
+
                 </tr>
                 </thead>
                 <tbody>
@@ -26,7 +27,7 @@
                             <td>{{$discountCode->used_number}}</td>
                             <td>{{$discountCode->discount_type}}</td>
                             <td>{{$discountCode->discount_amount}}</td>
-                            
+
                         </tr>
                     @endforeach
                 {{-- @foreach($products as $product)

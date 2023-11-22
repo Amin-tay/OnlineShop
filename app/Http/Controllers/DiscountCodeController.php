@@ -14,17 +14,15 @@ class DiscountCodeController extends Controller
     {
         $discountCodes = DiscountCode::all();
 
-        foreach($discountCodes as $discountCode ){
-            if ($discountCode->discount_type == 'percent')
-                {
-                    $discountCode->discount_amount = (string)$discountCode->discount_amount.'%' ;
-                    $discountCode->discount_type = "Percent";
-                }
-                else {
-                    $discountCode->discount_amount =(string)$discountCode->discount_amount.'$' ;
-                    $discountCode->discount_type = "Fixed Amount";
-                }
-        }    
+        foreach ($discountCodes as $discountCode) {
+            if ($discountCode->discount_type == 'percent') {
+                $discountCode->discount_amount = (string)$discountCode->discount_amount . '%';
+                $discountCode->discount_type = "Percent";
+            } else {
+                $discountCode->discount_amount = (string)$discountCode->discount_amount . '$';
+                $discountCode->discount_type = "Fixed Amount";
+            }
+        }
         return view('admin.discountCodes.index', compact('discountCodes'));
     }
 
