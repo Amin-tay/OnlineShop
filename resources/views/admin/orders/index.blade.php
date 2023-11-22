@@ -29,29 +29,33 @@
                         <td class="">{{$order->user->email}}</td>
                         <td class="">{{$order->formated_date}} </td>
                         <td class="">${{$order->final_price}} </td>
-                        <td>
+                        <td class="">
 
-                            <select class="form-select {{$order->color}} order_status"
-                                    data-order-id="{{$order->id}}"
-                            >
+                            @can('change order status')
+                                <select class="form-select {{$order->color}} order_status"
+                                        data-order-id="{{$order->id}}"
+                                >
 
-                                <option class="bg-warning"
-                                        value="pending" @selected($order->order_status == 'pending')>
-                                    Pending
-                                </option>
-                                <option class="bg-primary"
-                                        value="shipped" @selected($order->order_status == 'shipped')>
-                                    Shipped
-                                </option>
-                                <option class="bg-success"
-                                        value="received" @selected($order->order_status == 'received')>
-                                    Received
-                                </option>
-                                <option class="bg-danger"
-                                        value="canceled" @selected($order->order_status == 'canceled')>
-                                    Canceled
-                                </option>
-                            </select>
+                                    <option class="bg-warning"
+                                            value="pending" @selected($order->order_status == 'pending')>
+                                        Pending
+                                    </option>
+                                    <option class="bg-primary"
+                                            value="shipped" @selected($order->order_status == 'shipped')>
+                                        Shipped
+                                    </option>
+                                    <option class="bg-success"
+                                            value="received" @selected($order->order_status == 'received')>
+                                        Received
+                                    </option>
+                                    <option class="bg-danger"
+                                            value="canceled" @selected($order->order_status == 'canceled')>
+                                        Canceled
+                                    </option>
+                                </select>
+                            @else
+                                <div class="btn {{$order->css_color}}"> {{ucfirst($order->order_status)}}</div>
+                            @endcan
                         </td>
                         <td class=""><a class="btn btn-info" href="/admin/showOrder/{{$order->id}}"> View Details</a>
                         </td>

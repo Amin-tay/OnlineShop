@@ -28,6 +28,7 @@ class RolePermissionSeeder extends Seeder
 
         $addDiscountCode = Permission::create(['name' => 'add discount code']);
 
+        $changeOrderStatusPermission = Permission::create(['name' => 'change order status']);
 
         //super admin permissions
         $superAdminRole->givePermissionTo($addCategoryPermission);
@@ -40,10 +41,14 @@ class RolePermissionSeeder extends Seeder
 
         $superAdminRole->givePermissionTo($addDiscountCode);
 
+        $superAdminRole->givePermissionTo($changeOrderStatusPermission);
+
         //normal admin permissions
         $normalAdminRole->givePermissionTo($editCategoryPermission);
         $normalAdminRole->givePermissionTo($editProductPermission);
 
         $normalAdminRole->givePermissionTo($addDiscountCode);
+
+//        $normalAdminRole->givePermissionTo($changeOrderStatusPermission);
     }
 }

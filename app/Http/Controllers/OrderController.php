@@ -34,12 +34,12 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::orderBy('id','desc')->get();
+        $orders = Order::orderBy('id', 'desc')->get();
         // $orders = Order::all();
         foreach ($orders as $order) {
             $order->color = $this->getCssColor($order->order_status);
             $order->formated_date = date("D d/m/Y ", strtotime($order->created_at));
-
+            $order->css_color = $this->getCssColor($order->order_status);
         }
 
         return view('admin.orders.index', compact('orders'));
@@ -99,11 +99,19 @@ class OrderController extends Controller
     public function changeOrderStatus(Request $request)
     {
 
-
         $orderId = $request->input('order_id');
         $order = Order::find($orderId);
         $status = $request->input('status');
 
+        if (!auth()->user()->hasPermissionTo('change order status')) {
+
+            return response()->json([
+                'order_status' => $order->order_status,
+                'message' => 'You are not allowed to change order status!',
+            ], 403); // Status code here
+//            return response($order->order_status, 403);
+//            return to_route('admin.products.index')->with('danger', 'You are not allowed to change order Status!');
+        }
 
         $order->update([
             'order_status' => $status,
