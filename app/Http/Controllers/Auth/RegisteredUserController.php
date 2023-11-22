@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'user_type' => '2',
-        ]);
+        ])->assignRole('normalUser');
 
         event(new Registered($user));
 
