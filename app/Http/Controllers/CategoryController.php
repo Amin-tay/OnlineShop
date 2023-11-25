@@ -49,10 +49,10 @@ class CategoryController extends Controller
         }
 
         $this->checkPermission('add category');
-        $image = substr($request->file('image')->store('public/categories'), 7);
+//        $image = substr($request->file('image')->store('public/categories'), 7);
         $category = Category::create([
             'name' => $request->name,
-            'image' => $image,
+//            'image' => $image,
         ]);
         $category->addMediaFromRequest('image')
 //            ->withResponsiveImages()
@@ -93,15 +93,15 @@ class CategoryController extends Controller
 
 //        $this->checkPermission('edit category');
 
-        $image = $category->image;
-        if ($request->hasFile('image')) {
-            Storage::delete('/storage/' . $category->image);
-            $image = substr($request->file('image')->store('public/categories'), 7);
-        }
+//        $image = $category->image;
+//        if ($request->hasFile('image')) {
+//            Storage::delete('/storage/' . $category->image);
+//            $image = substr($request->file('image')->store('public/categories'), 7);
+//        }
 
         $category->update([
             'name' => $request->name,
-            'image' => $image,
+//            'image' => $image,
         ]);
 
 

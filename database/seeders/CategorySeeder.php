@@ -27,7 +27,7 @@ class CategorySeeder extends Seeder
         $category1 = Category::create([
 //            'id' => '1',
             'name' => 'Phone',
-            'image' => 'Demo/Phone1.jpgg'
+//            'image' => 'Demo/Phone1.jpgg'
         ]);
         $this->addMedia($category1, 'Phone1.jpg');
 
@@ -35,7 +35,7 @@ class CategorySeeder extends Seeder
         $category2 = Category::create([
 //            'id' => '2',
             'name' => 'Laptop',
-            'image' => 'Demo/Laptop1.jpgg'
+//            'image' => 'Demo/Laptop1.jpgg'
         ]);
         $this->addMedia($category2, 'Laptop1.jpg');
 
@@ -43,7 +43,7 @@ class CategorySeeder extends Seeder
         $category3 = Category::create([
             //'id' => '3',
             'name' => 'Tablet',
-            'image' => 'Demo/Tablet1.jpgg'
+//            'image' => 'Demo/Tablet1.jpgg'
         ]);
         $this->addMedia($category3, 'Tablet1.jpg');
 
@@ -51,7 +51,7 @@ class CategorySeeder extends Seeder
         $category4 = Category::create([
             //'id' => '4',
             'name' => 'Smart Watch',
-            'image' => 'Demo/Watch1.jpgg'
+//            'image' => 'Demo/Watch1.jpgg'
         ]);
         $this->addMedia($category4, 'Watch1.jpg');
 
@@ -59,7 +59,7 @@ class CategorySeeder extends Seeder
         $category5 = Category::create([
             //'id' => '5',
             'name' => 'Camera',
-            'image' => 'Demo/Camera1.jpgg'
+//            'image' => 'Demo/Camera1.jpgg'
         ]);
         $this->addMedia($category5, 'Camera1.jpg');
 
@@ -67,7 +67,7 @@ class CategorySeeder extends Seeder
         $category6 = Category::create([
             //'id' => '6',
             'name' => 'Accessory',
-            'image' => 'Demo/Accessory1.jpgg'
+//            'image' => 'Demo/Accessory1.jpgg'
         ]);
         $this->addMedia($category6, 'Accessory1.jpg');
     }

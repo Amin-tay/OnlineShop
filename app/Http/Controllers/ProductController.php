@@ -42,7 +42,7 @@ class ProductController extends Controller
             return to_route('admin.products.index')->with('danger', 'You are not allowed to add Product!');
         }
 
-        $image = substr($request->file('image')->store('public/products'), 7);
+//        $image = substr($request->file('image')->store('public/products'), 7);
 //        dd($request);
         $product = Product::create([
             'name' => $request->name,
@@ -50,7 +50,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'category_id' => $request->category,
-            'image' => $image
+//            'image' => $image
         ]);
 
         $product->addMediaFromRequest('image')
@@ -90,19 +90,19 @@ class ProductController extends Controller
             return to_route('admin.products.index')->with('danger', 'You are not allowed to edit Product!');
         }
 
-        $image = $product->image;
+//        $image = $product->image;
 
-        if ($request->hasFile('image')) {
-            Storage::delete('/storage/' . $product->image);
-            $image = substr($request->file('image')->store('public/products'), 7);
-        }
+//        if ($request->hasFile('image')) {
+//            Storage::delete('/storage/' . $product->image);
+//            $image = substr($request->file('image')->store('public/products'), 7);
+//        }
 
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
             'category_id' => $request->category,
-            'image' => $image,
+//            'image' => $image,
         ]);
 
         if ($request->hasFile('image')) {

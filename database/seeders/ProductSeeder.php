@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
 
         $product1 = Product::create([
             'name' => 'Phone 1',
-            'image' => 'Demo/Phone2.jpgg',
+//            'image' => 'Demo/Phone2.jpgg',
             'price' => '1199.99',
             'quantity' => '8',
             'category_id' => '1',
@@ -40,7 +40,7 @@ class ProductSeeder extends Seeder
 
         $product2 = Product::create([
             'name' => 'Phone 2',
-            'image' => 'Demo/Phone3.jpgg',
+//            'image' => 'Demo/Phone3.jpgg',
             'price' => '799.99',
             'quantity' => '13',
             'category_id' => '1',
@@ -51,7 +51,7 @@ class ProductSeeder extends Seeder
 
         $product3 = Product::create([
             'name' => 'Phone 3',
-            'image' => 'Demo/Phone4.jpgg',
+//            'image' => 'Demo/Phone4.jpgg',
             'price' => '799.99',
             'quantity' => '13',
             'category_id' => '1',
@@ -61,7 +61,7 @@ class ProductSeeder extends Seeder
 
         $product4 = Product::create([
             'name' => 'Phone 4',
-            'image' => 'Demo/Phone5.jpgg',
+//            'image' => 'Demo/Phone5.jpgg',
             'price' => '699.99',
             'quantity' => '11',
             'category_id' => '1',
@@ -72,7 +72,7 @@ class ProductSeeder extends Seeder
 
         $product5 = Product::create([
             'name' => 'Laptop 1',
-            'image' => 'Demo/Laptop2.jpgg',
+//            'image' => 'Demo/Laptop2.jpgg',
             'price' => '999.99',
             'quantity' => '10',
             'category_id' => '2',
@@ -82,7 +82,7 @@ class ProductSeeder extends Seeder
 
         $product6 = Product::create([
             'name' => 'Laptop 2',
-            'image' => 'Demo/Laptop3.jpgg',
+//            'image' => 'Demo/Laptop3.jpgg',
             'price' => '899.99',
             'quantity' => '11',
             'category_id' => '2',
@@ -92,7 +92,7 @@ class ProductSeeder extends Seeder
 
         $product7 = Product::create([
             'name' => 'Tablet 1',
-            'image' => 'Demo/Tablet2.jpgg',
+//            'image' => 'Demo/Tablet2.jpgg',
             'price' => '899.99',
             'quantity' => '4',
             'category_id' => '3',
@@ -102,7 +102,7 @@ class ProductSeeder extends Seeder
 
         $product8 = Product::create([
             'name' => 'Smart Watch 1',
-            'image' => 'Demo/Watch2.jpgg',
+//            'image' => 'Demo/Watch2.jpgg',
             'price' => '899.99',
             'quantity' => '8',
             'category_id' => '4',
@@ -112,7 +112,7 @@ class ProductSeeder extends Seeder
 
         $product9 = Product::create([
             'name' => 'Camera 1',
-            'image' => 'Demo/Camera2.jpgg',
+//            'image' => 'Demo/Camera2.jpgg',
             'price' => '899.99',
             'quantity' => '7',
             'category_id' => '5',
@@ -121,7 +121,7 @@ class ProductSeeder extends Seeder
         $this->addMedia($product9, 'Camera2.jpg');
         $product10 = Product::create([
             'name' => 'Accessory 1',
-            'image' => 'Demo/Accessory2.jpgg',
+//            'image' => 'Demo/Accessory2.jpgg',
             'price' => '399.99',
             'quantity' => '7',
             'category_id' => '6',
