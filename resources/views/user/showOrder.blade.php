@@ -6,7 +6,7 @@
             <div class="px-4 my-5 border border-warning d-flex justify-content-between rounded">
                 <a class="w-25"
                    href="/products/{{$product->id}}">
-                    <img src="/storage/{{$product->image}}"
+                    <img src="{{$product->getFirstMediaUrl('products')}}"
                          class="w-100">
                 </a>
                 <div>

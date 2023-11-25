@@ -4,14 +4,14 @@
 
         <h1 class="text-center my-5 ">{{ $product->name }}</h1>
         <div class="mx-auto px-5 text-center">
-            <img src="/storage/{{ $product->image }}" class="w-50 border rounded mx-auto">
+            <img src="{{$product->getFirstMediaUrl('products')}}" class="w-50 border rounded mx-auto">
         </div>
         <br>
         <div class="px-5 text-center">
             <hr>
 
             <h2 class="my-3">Category : <a href="/categories/{{ $product->category->id }}"
-                    class="text-decoration-none text-info">
+                                           class="text-decoration-none text-info">
                     {{ $product->category->name }}</a></h2>
             <h2 class="my-3">Price : ${{ $product->price }}</h2>
             <h2 class="my-3">Available Quantity: {{ $product->quantity }}</h2>
@@ -38,8 +38,8 @@
                         {{-- <label for="quantity">Number</label> --}}
 
                         <input type="number" class="form-control w-25 mr-2" id="quantity" name="quantity"
-                            placeholder="Number" step="1" min="1"
-                            value={{ $quantity != 0 ? $quantity : 1 }}>
+                               placeholder="Number" step="1" min="1"
+                               value={{ $quantity != 0 ? $quantity : 1 }}>
 
                         <input type="hidden" value="{{ $product->id }}" name="productId">
                         <button type="submit" class="btn btn-success ml-2">Add to Cart</button>

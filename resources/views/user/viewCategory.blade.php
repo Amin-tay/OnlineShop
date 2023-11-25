@@ -17,7 +17,7 @@
                             <div class="rounded border border-primary h-100 pb-2">
                                 <a href="/products/{{ $product->id }}" class="text-decoration-none">
                                     <img class="w-100 img-fluid object-contain rounded h-75"
-                                        src="/storage/{{ $product->image }}" alt="Product Image">
+                                        src="{{$product->getFirstMediaUrl('products')}}" alt="Product Image">
                                     <h3 class="text-center text-black ">{{ $product->name }}</h3>
                                     <h4 class="text-center text-black ">${{ $product->price }}</h4>
                                 </a>

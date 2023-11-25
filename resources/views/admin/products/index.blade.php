@@ -24,7 +24,7 @@
                         <td>{{$product->id}}</td>
                         <td class=""><a href="/products/{{$product->id}}">
                                 <img
-                                    src="/storage/{{$product->image}}"
+                                    src="{{$product->getFirstMediaUrl('products')}}"
                                     class="w-50"
                                     alt="Product Image">
                             </a></td>

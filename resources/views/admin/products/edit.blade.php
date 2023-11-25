@@ -35,7 +35,7 @@
             </div>
             <div class="">
                 <img
-                    src="/storage/{{$product->image}}"
+                    src="{{$product->getFirstMediaUrl('products')}}"
                     class="w-100"
                     alt="Product Image">
             </div>
