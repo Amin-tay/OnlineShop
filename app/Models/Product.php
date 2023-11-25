@@ -12,6 +12,10 @@ class Product extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('products')->singleFile();
+    }
 
     public function category()
     {

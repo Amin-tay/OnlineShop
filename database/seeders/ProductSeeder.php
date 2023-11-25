@@ -118,7 +118,7 @@ class ProductSeeder extends Seeder
             'category_id' => '5',
             'description' => 'Awesome Camera!',
         ]);
-        $this->addMedia($product9, 'Camera1.jpg');
+        $this->addMedia($product9, 'Camera2.jpg');
         $product10 = Product::create([
             'name' => 'Accessory 1',
             'image' => 'Demo/Accessory2.jpgg',

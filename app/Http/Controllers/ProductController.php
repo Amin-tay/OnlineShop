@@ -44,7 +44,7 @@ class ProductController extends Controller
 
         $image = substr($request->file('image')->store('public/products'), 7);
 //        dd($request);
-        Product::create([
+        $product = Product::create([
             'name' => $request->name,
             'quantity' => $request->quantity,
             'description' => $request->description,
@@ -52,6 +52,11 @@ class ProductController extends Controller
             'category_id' => $request->category,
             'image' => $image
         ]);
+
+        $product->addMediaFromRequest('image')
+//            ->withResponsiveImages()
+            ->toMediaCollection('products');
+
         return to_route('admin.products.index')->with('success', 'Product Added!');
     }
 
@@ -91,6 +96,7 @@ class ProductController extends Controller
             Storage::delete('/storage/' . $product->image);
             $image = substr($request->file('image')->store('public/products'), 7);
         }
+
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
@@ -98,6 +104,12 @@ class ProductController extends Controller
             'category_id' => $request->category,
             'image' => $image,
         ]);
+
+        if ($request->hasFile('image')) {
+            $product->addMediaFromRequest('image')
+//            ->withResponsiveImages()
+                ->toMediaCollection('products');
+        }
 
         return to_route("admin.products.index")->with('success', 'Product Updated!');
 

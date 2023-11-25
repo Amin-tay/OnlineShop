@@ -54,8 +54,8 @@ class CategoryController extends Controller
             'name' => $request->name,
             'image' => $image,
         ]);
-        $category->addMedia("D:\OnlineShop\storage\app\public\Demo\Toy4.jpg")
-            ->withResponsiveImages()
+        $category->addMediaFromRequest('image')
+//            ->withResponsiveImages()
             ->toMediaCollection('categories');
 
         return to_route('admin.categories.index')->with('success', 'Category Added!');
@@ -104,6 +104,12 @@ class CategoryController extends Controller
             'image' => $image,
         ]);
 
+
+        if ($request->hasFile('image')) {
+            $category->addMediaFromRequest('image')
+//            ->withResponsiveImages()
+                ->toMediaCollection('categories');
+        }
         return to_route('admin.categories.index')->with('success', 'Category Updated!');
 
     }

@@ -12,6 +12,11 @@ class Category extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('categories')->singleFile();
+    }
     public function products()
     {
         return $this->hasMany(Product::class);
