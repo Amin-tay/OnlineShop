@@ -49,12 +49,14 @@ class CategoryController extends Controller
         }
 
         $this->checkPermission('add category');
-
         $image = substr($request->file('image')->store('public/categories'), 7);
-        Category::create([
+        $category = Category::create([
             'name' => $request->name,
             'image' => $image,
         ]);
+        $category->addMedia("D:\OnlineShop\storage\app\public\Demo\Toy4.jpg")
+            ->withResponsiveImages()
+            ->toMediaCollection('categories');
 
         return to_route('admin.categories.index')->with('success', 'Category Added!');
     }

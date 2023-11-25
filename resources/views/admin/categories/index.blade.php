@@ -22,11 +22,11 @@
                         <th scope="row">{{$category->id}}</th>
 
                         <td class="w-25"><a href="/categories/{{$category->id}}"><img
-                                    src="/storage/{{$category->image}}"
+                                    src="{{$category->getFirstMediaUrl('categories')}}"
                                     class="w-100"
                                 ></a></td>
                         <td class=""><a href="/categories/{{$category->id}}"
-                                        class="text-decoration-none text-black">{{$category->name}}</a ></td>
+                                        class="text-decoration-none text-black">{{$category->name}}</a></td>
                         <td>{{count($category->products)}}</td>
                         <td>
                             <div class="d-flex justify-content-center">

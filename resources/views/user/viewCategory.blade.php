@@ -4,7 +4,7 @@
 
         <h1 class="text-center my-5">{{ $category->name }}</h1>
         <div class="mx-auto px-5 text-center">
-            <img src="/storage/{{ $category->image }}" class="w-75 border rounded mx-auto">
+            <img src="{{$category->getFirstMediaUrl('categories')}}" class="w-75 border rounded mx-auto">
         </div>
         <br>
         <hr>

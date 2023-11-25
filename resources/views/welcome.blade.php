@@ -15,7 +15,7 @@
                         <div class="rounded border border-primary h-100">
                             <a href="/categories/{{$category->id}}" class="text-decoration-none">
                                 <img class="w-100 img-fluid object-fit-fill rounded h-75"
-                                     src="/storage/{{$category->image}}" alt="Category Image">
+                                     src="{{$category->getFirstMediaUrl('categories')}}" alt="Category Image">
                                 <h3 class="text-center text-black my-1">{{$category->name}}</h3>
                             </a>
                         </div>

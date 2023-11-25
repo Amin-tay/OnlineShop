@@ -16,7 +16,7 @@
             </div>
             <div class="">
                 <img
-                    src="/storage/{{$category->image}}"
+                    src="{{$category->getFirstMediaUrl('categories')}}"
                     class="w-100"
                 >
             </div>

@@ -53,10 +53,9 @@ class ProductSeeder extends Seeder
         ]);
 
 
-
         Product::create([
             'name' => 'Laptop 1',
-            'image' => 'Demo/Laptop1.jpg',
+            'image' => 'Demo/Laptop2.jpg',
             'price' => '999.99',
             'quantity' => '10',
             'category_id' => '2',
@@ -65,7 +64,7 @@ class ProductSeeder extends Seeder
 
         Product::create([
             'name' => 'Laptop 2',
-            'image' => 'Demo/Laptop2.jpg',
+            'image' => 'Demo/Laptop3.jpg',
             'price' => '899.99',
             'quantity' => '11',
             'category_id' => '2',
