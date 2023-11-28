@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Modules\Order\app\Http\Controllers\OrderController;
+use Modules\DiscountCode\app\Http\Controllers\DiscountCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,11 +48,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('index');
-
-//    Route::resource('/categories', CategoryController::class);
-
-    Route::resource('/discountCodes', DiscountCodeController::class);
-
 
 });
 Route::get('/categories/{id}', [HomeController::class, 'viewCategory']);

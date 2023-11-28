@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DiscountCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Modules\Category\app\Models\Category;
+use Modules\DiscountCode\app\Models\DiscountCode;
 use Modules\Order\app\Models\Order;
 use Modules\Order\app\Models\OrderProduct;
 use Modules\Product\app\Models\Product;

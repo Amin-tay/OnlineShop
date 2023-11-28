@@ -2,5 +2,6 @@
     "Product": true,
     "Products": true,
     "Category": true,
-    "Order": true
+    "Order": true,
+    "DiscountCode": true
 }

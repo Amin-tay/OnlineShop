@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\DiscountCode\app\Http\Controllers;
 
-use App\Models\DiscountCode;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\DiscountCode\app\Models\DiscountCode;
 
 class DiscountCodeController extends Controller
 {
