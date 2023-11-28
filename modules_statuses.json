@@ -3,5 +3,6 @@
     "Products": true,
     "Category": true,
     "Order": true,
-    "DiscountCode": true
+    "DiscountCode": true,
+    "User": true
 }

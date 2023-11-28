@@ -2,10 +2,10 @@
 
 namespace Modules\Order\app\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Product\app\Models\Product;
+use Modules\User\app\Models\User;
 
 class Order extends Model
 {
