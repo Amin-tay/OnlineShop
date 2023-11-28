@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\DiscountCode;
 use App\Models\Order;
 use App\Models\OrderProduct;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Modules\Category\app\Models\Category;
+use Modules\Product\app\Models\Product;
 
 class HomeController extends Controller
 {

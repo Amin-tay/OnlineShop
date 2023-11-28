@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace Modules\Product\app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Category\app\Models\Category;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 

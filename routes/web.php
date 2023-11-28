@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Modules\Category\app\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $categories = \App\Models\Category::all();
+    $categories = \Modules\Category\app\Models\Category::all();
     //    $categories = \App\Models\Category::take(3)->get();
     return view('welcome', compact('categories'));
 });
@@ -52,13 +51,13 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     Route::resource('/categories', CategoryController::class);
-    Route::resource('/products', ProductController::class);
+
     Route::resource('/orders', OrderController::class);
     Route::resource('/discountCodes', DiscountCodeController::class);
 
     Route::post('/change-order-status', [OrderController::class, 'changeOrderStatus']);
     Route::get('/showOrder/{id}', [OrderController::class, 'show']);
-    
+
 });
 Route::get('/categories/{id}', [HomeController::class, 'viewCategory']);
 Route::get('/products/{id}', [HomeController::class, 'viewProduct']);
