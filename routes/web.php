@@ -3,10 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DiscountCodeController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Modules\Category\app\Http\Controllers\CategoryController;
+use Modules\Order\app\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::post('order', [HomeController::class, 'order']);
 
     Route::get('thank_you', [HomeController::class, 'thankYou']);
+    Route::get('thank_you', [HomeController::class, 'thankYou']);
 });
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
 
@@ -52,11 +52,8 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
 
 //    Route::resource('/categories', CategoryController::class);
 
-    Route::resource('/orders', OrderController::class);
     Route::resource('/discountCodes', DiscountCodeController::class);
 
-    Route::post('/change-order-status', [OrderController::class, 'changeOrderStatus']);
-    Route::get('/showOrder/{id}', [OrderController::class, 'show']);
 
 });
 Route::get('/categories/{id}', [HomeController::class, 'viewCategory']);

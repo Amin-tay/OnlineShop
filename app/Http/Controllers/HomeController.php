@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\DiscountCode;
-use App\Models\Order;
-use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Modules\Category\app\Models\Category;
+use Modules\Order\app\Models\Order;
+use Modules\Order\app\Models\OrderProduct;
 use Modules\Product\app\Models\Product;
 
 class HomeController extends Controller

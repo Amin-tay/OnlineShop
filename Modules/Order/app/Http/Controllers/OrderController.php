@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Order\app\Http\Controllers;
 
-use App\Models\Order;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use PhpParser\Node\Scalar\String_;
+use Modules\Order\app\Models\Order;
 
 class OrderController extends Controller
 {
