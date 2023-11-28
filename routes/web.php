@@ -50,7 +50,7 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
 
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
-    Route::resource('/categories', CategoryController::class);
+//    Route::resource('/categories', CategoryController::class);
 
     Route::resource('/orders', OrderController::class);
     Route::resource('/discountCodes', DiscountCodeController::class);
