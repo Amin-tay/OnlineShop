@@ -17,7 +17,9 @@ use Modules\Category\app\Http\Controllers\CategoryApiController;
 */
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'ApiAdmin'])->group(function () {
+    Route::post('/categories/update/{id}', [CategoryApiController::class,'update']);
     Route::resource('/categories', CategoryApiController::class);
+
 });
 //Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
 //    Route::get('category', fn (Request $request) => $request->user())->name('category');

@@ -15,6 +15,7 @@ class CategoryResource extends JsonResource
             'id' =>$this->id,
             'name' => $this->name,
             'products_count' => count($this->products),
+            'image' => $this->getFirstMediaUrl('categories')
         ];
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Category\app\Http\Requests;
+namespace Modules\Product\app\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryStoreRequest extends FormRequest
+class ProductStoreRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -13,7 +13,10 @@ class CategoryStoreRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'image' => ['required'],
+            'price' => ['required'],
+            'quantity' => ['required'],
+            'description' => ['required'],
+            'category_id' => ['required'],
         ];
     }
 
