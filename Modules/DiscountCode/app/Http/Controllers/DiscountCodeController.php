@@ -58,6 +58,7 @@ class DiscountCodeController extends Controller
             'quantity' => $quantity,
             'discount_type' => $request->discount_type,
             'discount_amount' => $request->discount_amount,
+
         ]);
         return to_route('admin.discountCodes.index')->with('success', 'Discount Code Added!');
     }

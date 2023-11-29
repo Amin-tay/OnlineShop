@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\DiscountCode\app\Http\Controllers\DiscountCodeApiController;
 
 /*
     |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
     |
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('discountcode', fn (Request $request) => $request->user())->name('discountcode');
+Route::prefix('admin')->middleware(['auth:sanctum', 'ApiAdmin'])->group(function () {
+    Route::post('/discount-codes/update/{id}', [DiscountCodeApiController::class, 'update']);
+    Route::resource('/discount-codes', DiscountCodeApiController::class);
 });
