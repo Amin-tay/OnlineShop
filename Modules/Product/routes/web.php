@@ -19,8 +19,8 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/products', ProductController::class);
 });
 
-
-Route::group([], function () {
-
-    Route::resource('product', ProductController::class)->names('product');
-});
+//
+//Route::group([], function () {
+//
+//    Route::resource('product', ProductController::class)->names('product');
+//});

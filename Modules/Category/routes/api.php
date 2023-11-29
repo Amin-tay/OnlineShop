@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Category\app\Http\Controllers\CategoryApiController;
+
 
 /*
     |--------------------------------------------------------------------------
@@ -14,6 +16,9 @@ use Illuminate\Support\Facades\Route;
     |
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('category', fn (Request $request) => $request->user())->name('category');
+Route::prefix('admin')->middleware(['auth:sanctum', 'ApiAdmin'])->group(function () {
+    Route::resource('/categories', CategoryApiController::class);
 });
+//Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
+//    Route::get('category', fn (Request $request) => $request->user())->name('category');
+//});
