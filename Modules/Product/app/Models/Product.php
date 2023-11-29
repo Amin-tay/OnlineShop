@@ -5,6 +5,7 @@ namespace Modules\Product\app\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Category\app\Models\Category;
+use Modules\User\app\Models\Cart;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -21,5 +22,8 @@ class Product extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function carts(){
+        return $this->hasMany(Cart::class);
     }
 }
