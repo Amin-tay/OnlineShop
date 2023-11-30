@@ -3,7 +3,9 @@
 namespace Modules\Category\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Modules\Category\app\Http\Requests\CategoryStoreRequest;
 use Modules\Category\app\Models\Category;
 use Modules\Category\app\Resources\CategoryResource;
@@ -11,6 +13,8 @@ use Modules\Category\app\Resources\CategoryResource;
 
 class CategoryApiController extends Controller
 {
+    use HttpResponses;
+
     public array $data = [];
 
     /**
@@ -18,14 +22,8 @@ class CategoryApiController extends Controller
      */
     public function index()
     {
-        //
         $categories = Category::all();
         return CategoryResource::collection($categories);
-//        return response()->json([
-//                'data' => [... CategoryResource::collection(Category::all())],
-//            ]
-//            , 200);
-
     }
 
     /**
@@ -36,12 +34,13 @@ class CategoryApiController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show(Category $category)
+    public function show($category)
     {
-//        $category = Category::find($category);
+        $category = Category::find($category);
+        if (!$category) {
+            return $this->error404('Category not found');
+        }
         return new CategoryResource($category);
-
-//        return response()->json($this->data);
     }
 
     /**
@@ -50,25 +49,32 @@ class CategoryApiController extends Controller
 
     public function store(CategoryStoreRequest $request)
     {
-        $request->validated($request->all());
+//        $request->validated($request->all());
+        if (!Auth::user()->hasPermissionTo('add category')) {
+            return $this->error401('You are not allowed to Add category');
+        }
 
         $category = Category::create([
             'name' => $request->name
         ]);
+
         if ($request->hasFile('image')) {
-//            return response()->json();
             $category->addMediaFromRequest('image')->toMediaCollection('categories');
         }
         return new CategoryResource($category);
-//        return response()->json($this->data);
     }
 
-    public function update(CategoryStoreRequest $request,  $category)
+    public function update(CategoryStoreRequest $request, $category)
     {
-        //
-//        return response()->json(['data' => 'data']);
+        if (!Auth::user()->hasPermissionTo('edit category')) {
+            return $this->error401('You are not allowed to Edit category');
+        }
+
         $category = Category::find($category);
-        $request->validated($request->all());
+        if (!$category) {
+            return $this->error404("Category not found");
+        }
+//        $request->validated($request->all());
 
 //        return new CategoryResource($category);
 
@@ -88,9 +94,17 @@ class CategoryApiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category): JsonResponse
+    public function destroy($category)
     {
-        //
+        if (!Auth::user()->hasPermissionTo('delete category')) {
+            return $this->error401('You are not allowed to delete category');
+        }
+
+        $category = Category::find($category);
+
+        if (!$category) {
+            return $this->error404('Category not found');
+        }
         $category->delete();
         return response()->json([
             'message' => 'Category Deleted'

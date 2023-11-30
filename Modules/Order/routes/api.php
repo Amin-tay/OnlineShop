@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Order\app\Http\Controllers\OrderApiController;
 
 /*
     |--------------------------------------------------------------------------
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\Route;
     | is assigned the "api" middleware group. Enjoy building your API!
     |
 */
-
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('order', fn (Request $request) => $request->user())->name('order');
+Route::prefix('admin')->middleware(['auth:sanctum', 'ApiAdmin'])->group(function () {
+    Route::get('/orders', [OrderApiController::class, 'allOrders']);
+    Route::get('/orders/{id}', [OrderApiController::class, 'showOrder']);
+    Route::post('/change-order-status/{id}', [OrderApiController::class, 'changeOrderStatus']);
 });

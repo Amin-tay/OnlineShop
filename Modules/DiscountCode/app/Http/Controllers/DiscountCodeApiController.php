@@ -48,7 +48,10 @@ class DiscountCodeApiController extends Controller
      */
     public function show($id)
     {
-        $discount_code = DiscountCode::findOrFail($id);
+        $discount_code = DiscountCode::find($id);
+        if (!$discount_code) {
+            return response()->json(['message' => 'Discount code not found'], 404);
+        }
         return new DiscountCodeResource($discount_code);
     }
 

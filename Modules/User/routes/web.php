@@ -19,8 +19,9 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('addToCart', [HomeController::class, 'addToCart']);
-
     Route::get('viewCart', [HomeController::class, 'viewCart']);
+
+
     Route::get('viewOrders', [HomeController::class, 'viewOrders']);
     Route::get('viewOrders/{id}', [HomeController::class, 'showOrder']);
     Route::post('addDiscountCode', [HomeController::class, 'addDiscountCode']);

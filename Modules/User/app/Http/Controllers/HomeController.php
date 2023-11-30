@@ -268,7 +268,7 @@ class HomeController extends Controller
 
         // return redirect()->back()->with('success', 'test');
         // dd(session('cart'), $cart);
-        //todo check for avaliable quanitity and decrease
+        //todo check for available quantity and decrease
         // dd(empty($cart));
 
 
@@ -286,7 +286,6 @@ class HomeController extends Controller
                 return redirect()->back()->with('danger', $product->name . " has no enough qunatity! Decreased order quantity from " . $old_quantity . " to " . $product->quantity);
             }
         }
-
 
         $sum_price = $this->getTotalCost($cart);
         $discount_code_id = -1;

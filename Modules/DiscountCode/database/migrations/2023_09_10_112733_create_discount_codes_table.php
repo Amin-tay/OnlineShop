@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('code')->unique();
             $table->integer('quantity')->default('-1');
             $table->integer('used_number')->default('0');
-            $table->string('discount_type');
+            $table->enum('discount_type', ['percent','fixed'])->default('percent');
             $table->integer('discount_amount');
             $table->integer('max_percentage_discount')->nullable();
             $table->date('expire_date')->nullable();

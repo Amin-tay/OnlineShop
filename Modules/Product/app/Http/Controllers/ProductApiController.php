@@ -3,8 +3,10 @@
 namespace Modules\Product\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Modules\Category\app\Http\Requests\CategoryStoreRequest;
 use Modules\Product\app\Http\Requests\ProductStoreRequest;
 use Modules\Product\app\Models\Product;
@@ -13,6 +15,7 @@ use Modules\Product\app\Resources\ProductResource;
 class ProductApiController extends Controller
 {
     public array $data = [];
+    use HttpResponses;
 
     /**
      * Display a listing of the resource.
@@ -29,7 +32,11 @@ class ProductApiController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        $request->validated($request->all());
+//        $request->validated($request->all());
+        if (!Auth::user()->hasPermissionTo('add product')) {
+            return $this->error401('You are not allowed to Add product');
+        }
+
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -59,8 +66,14 @@ class ProductApiController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show(Product $product)
+    public function show($id)
     {
+        $product = Product::find($id);
+        if (!$product) {
+            return response()->json([
+                'message' => 'Product not found'
+            ], 404);
+        }
         return new ProductResource($product);
     }
 
@@ -69,8 +82,17 @@ class ProductApiController extends Controller
      */
     public function update(ProductStoreRequest $request, $id)
     {
-        $request->validated($request->all());
-        $product = Product::findOrFail($id);
+
+        if (!Auth::user()->hasPermissionTo('edit product')) {
+            return $this->error401('You are not allowed to edit product');
+        }
+
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Product code not found'], 404);
+        }
+
         $product->update([
             'name' => $request->name,
             'quantity' => $request->quantity,
@@ -91,7 +113,13 @@ class ProductApiController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
+        if (!Auth::user()->hasPermissionTo('delete product')) {
+            return $this->error401('You are not allowed to delete product');
+        }
+        $product = Product::find($id);
+        if (!$product) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
         $product->delete();
         return response()->json([
             'message' => 'Product Deleted'
