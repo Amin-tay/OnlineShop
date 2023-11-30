@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\User\app\Models;
+namespace Modules\DiscountCode\app\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\DiscountCode\app\Models\DiscountCode;
+use Illuminate\Database\Eloquent\Model;
+use Modules\User\app\Models\User;
 use Modules\User\Database\factories\UserCodeFactory;
 
 class UserCode extends Model

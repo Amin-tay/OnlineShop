@@ -19,3 +19,11 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'ApiAdmin'])->group(function
     Route::get('/orders/{id}', [OrderApiController::class, 'showOrder']);
     Route::post('/change-order-status/{id}', [OrderApiController::class, 'changeOrderStatus']);
 });
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::post('/order', [OrderApiController::class, 'order']);
+    Route::get('/view-orders', [OrderApiController::class, 'allUserOrders']);
+    Route::get('/view-orders/{id}', [OrderApiController::class, 'showUserOrder']);
+
+});

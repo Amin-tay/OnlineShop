@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Cart\app\Models\Cart;
+use Modules\DiscountCode\app\Models\UserCode;
 use Modules\Order\app\Models\Order;
 use Spatie\Permission\Traits\HasRoles;
 

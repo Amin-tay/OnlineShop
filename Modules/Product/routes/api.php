@@ -15,6 +15,9 @@ use Modules\Product\app\Http\Controllers\ProductApiController;
     |
 */
 Route::prefix('admin')->middleware(['auth:sanctum', 'ApiAdmin'])->group(function () {
-    Route::post('/products/update/{id}',[ProductApiController::class, 'update']);
+    Route::post('/products/update/{id}', [ProductApiController::class, 'update']);
     Route::resource('/products', ProductApiController::class);
 });
+
+Route::get('/products', [ProductApiController::class, 'index']);
+Route::get('/products/{id}', [ProductApiController::class, 'show']);

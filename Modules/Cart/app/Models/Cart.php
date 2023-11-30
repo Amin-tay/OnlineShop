@@ -1,10 +1,11 @@
 <?php
 
-namespace Modules\User\app\Models;
+namespace Modules\Cart\app\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Product\app\Models\Product;
+use Modules\User\app\Models\User;
 use Modules\User\Database\factories\CartFactory;
 
 class Cart extends Model

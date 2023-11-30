@@ -4,5 +4,6 @@
     "Category": true,
     "Order": true,
     "DiscountCode": true,
-    "User": true
+    "User": true,
+    "Cart": true
 }

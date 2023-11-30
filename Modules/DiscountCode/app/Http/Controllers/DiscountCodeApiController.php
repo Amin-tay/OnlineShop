@@ -3,19 +3,73 @@
 namespace Modules\DiscountCode\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Modules\DiscountCode\app\Http\Requests\DiscountCodeRequest;
+use Modules\DiscountCode\app\Http\Requests\DiscountCodeUsageRequest;
 use Modules\DiscountCode\app\Models\DiscountCode;
+use Modules\DiscountCode\app\Models\UserCode;
 use Modules\DiscountCode\app\Resources\DiscountCodeResource;
 
 class DiscountCodeApiController extends Controller
 {
-    public array $data = [];
+    use HttpResponses;
 
     /**
      * Display a listing of the resource.
      */
+
+    public function addDiscountCode(DiscountCodeUsageRequest $request)
+    {
+        if (Auth::user()->hasAnyRole('superAdmin', 'normalAdmin')) {
+            return $this->error401('Admins are not allowed to this action');
+        }
+        $user = Auth::user();
+        $discountCode = DiscountCode::where('code', $request->code)->first();
+        $userCodeRecord = UserCode::where('user_id', $user->id)->first();
+
+        if ($discountCode == null) {
+            return $this->error422('Discount Code not found!');
+        }
+
+        if ($discountCode->quantity != -1 && $discountCode->used_number >= $discountCode->quantity) {
+            return $this->error422("Discount Code can not be used anymore");
+        }
+
+        if ($userCodeRecord != null) {
+            return $this->error422('You already selected a Discount Code');
+        }
+
+        $userCode = UserCode::create([
+            'user_id' => $user->id,
+            'discount_code_id' => $discountCode->id,
+        ]);
+
+        return response()->json([
+            'message' => 'Discount Code added',
+        ]);
+    }
+
+    public function removeDiscountCode(Request $request)
+    {
+        if (Auth::user()->hasAnyRole('superAdmin', 'normalAdmin')) {
+            return $this->error401('Admins are not allowed to this action');
+        }
+        $user = Auth::user();
+        $userCodeRecord = UserCode::where('user_id', $user->id)->first();
+
+        if ($userCodeRecord == null) {
+            return $this->error422('You have no Discount Code');
+        }
+        $userCodeRecord->delete();
+
+        return response()->json([
+            'message' => 'Discount Code removed',
+        ]);
+
+    }
+
     public function index()
     {
         $discountCodes = DiscountCode::all();

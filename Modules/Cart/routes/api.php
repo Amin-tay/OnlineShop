@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\DiscountCode\app\Http\Controllers\DiscountCodeApiController;
+use Modules\Cart\app\Http\Controllers\CartApiController;
 
 /*
     |--------------------------------------------------------------------------
@@ -15,11 +15,8 @@ use Modules\DiscountCode\app\Http\Controllers\DiscountCodeApiController;
     |
 */
 
-Route::prefix('admin')->middleware(['auth:sanctum', 'ApiAdmin'])->group(function () {
-    Route::post('/discount-codes/update/{id}', [DiscountCodeApiController::class, 'update']);
-    Route::resource('/discount-codes', DiscountCodeApiController::class);
-});
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/add-discount-code', [DiscountCodeApiController::class, 'addDiscountCode']);
-    Route::post('/remove-discount-code', [DiscountCodeApiController::class, 'removeDiscountCode']);
+    Route::post('/add-to-cart', [CartApiController::class, 'addToCart']);
+    Route::post('/remove-from-cart', [CartApiController::class, 'removeFromCart']);
+    Route::get('/view-cart', [CartApiController::class, 'viewCart']);
 });

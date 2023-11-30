@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\User\app\Http\Requests;
+namespace Modules\DiscountCode\app\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddToCartRequest extends FormRequest
+class DiscountCodeUsageRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -12,8 +12,7 @@ class AddToCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => ['required'],
-            'quantity' => ['required'],
+            'code' => ['required'],
         ];
     }
 

@@ -4,8 +4,8 @@ namespace Modules\Product\app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Cart\app\Models\Cart;
 use Modules\Category\app\Models\Category;
-use Modules\User\app\Models\Cart;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
