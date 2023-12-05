@@ -4,6 +4,7 @@ namespace Modules\Product\app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Cart\app\Models\Cart;
 use Modules\Category\app\Models\Category;
 use Spatie\MediaLibrary\HasMedia;
@@ -13,6 +14,7 @@ class Product extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+    use SoftDeletes;
 
     public function registerMediaCollections(): void
     {

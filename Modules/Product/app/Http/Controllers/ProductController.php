@@ -53,11 +53,20 @@ class ProductController extends Controller
 //            'image' => $image
         ]);
 
+
         $product->addMediaFromRequest('image')
 //            ->withResponsiveImages()
             ->toMediaCollection('products');
 
         return to_route('admin.products.index')->with('success', 'Product Added!');
+    }
+
+    public function archive()
+    {
+        $products = Product::onlyTrashed()->get();
+//        $products = Product::withTrashed()->get();
+//        dd(count($products));
+        return view('admin.products.archive', compact('products'));
     }
 
     /**
@@ -124,7 +133,21 @@ class ProductController extends Controller
             return to_route('admin.products.index')->with('danger', 'You are not allowed to delete Product!');
         }
 
-        $product->delete();
+//        dd($product->trashed());
+
+        if ($product->trashed()) {
+            $product->forceDelete();
+
+        } else {
+            $product->delete();
+        }
         return to_route('admin.products.index')->with('warning', 'Product Deleted!');
+    }
+
+    public function restore(Request $request, $id)
+    {
+        $product = Product::withTrashed()->where('id', $id)->get()[0];
+        $product->restore();
+        dd($product);
     }
 }
