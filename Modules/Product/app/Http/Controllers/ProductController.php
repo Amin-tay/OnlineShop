@@ -148,6 +148,7 @@ class ProductController extends Controller
     {
         $product = Product::withTrashed()->where('id', $id)->get()[0];
         $product->restore();
-        dd($product);
+//        dd($product);
+        return to_route('admin.products.index')->with('warning', 'Product Deleted!');
     }
 }

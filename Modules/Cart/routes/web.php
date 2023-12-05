@@ -13,7 +13,3 @@ use Modules\Cart\app\Http\Controllers\CartController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::group([], function () {
-    Route::resource('cart', CartController::class)->names('cart');
-});

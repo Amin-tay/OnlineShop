@@ -18,6 +18,8 @@ Route::middleware(['auth', 'admin'])->name('admin.products.')->prefix('admin/pro
     Route::get('//archive', [ProductController::class, 'archive']);
 
     Route::get('/', [ProductController::class, 'index']);
+    Route::get('/{product}/edit', [ProductController::class, 'edit']);
+    Route::put('/{product}', [ProductController::class, 'update']);
     Route::post('/{product}/restore', [ProductController::class, 'restore'])->withTrashed();
 //    Route::post('/{product}/restore', [ProductController::class, 'restore'])->withTrashed();
     Route::delete('/{product}', [ProductController::class, 'destroy'])->withTrashed();
