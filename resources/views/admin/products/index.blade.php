@@ -2,7 +2,11 @@
     <h1 class="text-center my-5">Products Index</h1>
 
     <div class="text-center">
-        <a class="btn btn-success text-center mx-auto mb-4" href="{{route('admin.products.create')}}">Add Product</a>
+        <div class="">
+            <a class="btn btn-success text-center  mb-4" href="{{route('admin.products.create')}}">Add
+                Product</a>
+            <a class="btn btn-info text-center  mb-4" href="{{route('admin.products.archive')}}">Archive</a>
+        </div>
 
         <div class=" px-5 mx-5">
             <table class="table text-center align-middle">

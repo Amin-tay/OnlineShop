@@ -15,7 +15,7 @@ use Modules\Product\app\Http\Controllers\ProductController;
 */
 
 Route::middleware(['auth', 'admin'])->name('admin.products.')->prefix('admin/products')->group(function () {
-    Route::get('//archive', [ProductController::class, 'archive']);
+    Route::get('/archive', [ProductController::class, 'archive'])->name('archive');
 
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/{product}/edit', [ProductController::class, 'edit']);

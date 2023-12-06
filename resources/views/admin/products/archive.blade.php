@@ -4,7 +4,7 @@
     <div class="text-center">
         <a class="btn btn-success text-center mx-auto mb-4" href="{{route('admin.products.create')}}">Add Product</a>
 
-        <div class=" px-5 mx-5">
+        <div class=" px-1 mx-5">
             <table class="table text-center align-middle">
                 <thead>
                 <tr>
