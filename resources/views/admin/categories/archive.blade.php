@@ -2,8 +2,7 @@
     <h1 class="text-center my-5">Category Index</h1>
 
     <div class="text-center">
-        <a class="btn btn-success text-center mx-auto mb-4" href="{{route('admin.categories.create')}}">Add Category</a>
-        <a class="btn btn-info text-center mx-auto mb-4" href="{{route('admin.categories.archive')}}">Archive</a>
+
 
         <div class=" px-5 mx-5">
             <table class="table text-center align-middle">
@@ -31,13 +30,16 @@
                         <td>{{count($category->products)}}</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href="{{ route('admin.categories.edit',$category->id) }}"
-                                   class="btn btn-primary me-2">Edit</a>
+                                <form method="POST" action="/admin/categories/{{$category->id}}/restore">
+                                    @csrf
+                                    <button type="submit" class="btn btn-info">Restore</button>
+                                </form>
                                 <form method="POST" action="{{ route('admin.categories.destroy',$category->id) }}"
                                       onsubmit="return confirm('Are your sure?\nAll related products will be deleted!');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
+
                                 </form>
                             </div>
                         </td>

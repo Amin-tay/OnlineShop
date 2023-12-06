@@ -123,8 +123,26 @@ class CategoryController extends Controller
             return to_route('admin.categories.index')->with('danger', 'You are not allowed to delete Category!');
         }
 //        $this->checkPermission('delete category');
-        $category->delete();
-        return to_route('admin.categories.index')->with('warning', 'Category Deleted!');
+        if ($category->trashed()) {
+            $category->forceDelete();
+            return to_route('admin.categories.index')->with('danger', 'Category permanently Deleted!');
+        } else {
+            $category->delete();
+            return to_route('admin.categories.index')->with('warning', 'Category Deleted!');
+        }
+    }
 
+    public function restore(Request $request, $id)
+    {
+        $product = Category::withTrashed()->where('id', $id)->get()[0];
+        $product->restore();
+//        dd($product);
+        return to_route('admin.categories.index')->with('success', 'Category restored!');
+    }
+
+    public function archive()
+    {
+        $categories = Category::onlyTrashed()->get();
+        return view('admin.categories.archive', compact('categories'));
     }
 }

@@ -127,6 +127,7 @@ class ProductController extends Controller
         if ($product->trashed()) {
             $product->forceDelete();
             return to_route('admin.products.index')->with('danger', 'Product force Deleted!');
+
         } else {
             $product->delete();
             return to_route('admin.products.index')->with('warning', 'Product deleted!');

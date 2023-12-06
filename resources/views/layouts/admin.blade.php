@@ -26,7 +26,7 @@
 
     <style>
         .back-tester {
-            background-color: #ffd5ef;
+            background-color: #d2d2d2;
         }
     </style>
     {{--    @vite(['/resources/js/app.js']) --}}

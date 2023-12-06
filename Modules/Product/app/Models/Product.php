@@ -38,8 +38,8 @@ class Product extends Model implements HasMedia
     {
         return LogOptions::defaults()
             ->logOnly(['name', 'price', 'quantity', 'category.name', 'deleted_at'])
-            ->dontLogIfAttributesChangedOnly(['deleted_at']);
-//            ->logOnlyDirty();
+            ->dontLogIfAttributesChangedOnly(['deleted_at'])
+            ->logOnlyDirty();
 
     }
 }

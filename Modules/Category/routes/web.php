@@ -14,8 +14,15 @@ use Modules\Category\app\Http\Controllers\CategoryController;
 |
 */
 
-Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
-    Route::resource('/categories', CategoryController::class);
+Route::middleware(['auth', 'admin'])->name('admin.categories.')->prefix('admin/categories')->group(function () {
+    Route::post('/{category}/restore', [CategoryController::class, 'restore'])->withTrashed();
+
+    Route::get('/archive', [CategoryController::class, 'archive'])->name('archive');
+    Route::get('/{category}/edit', [CategoryController::class, 'edit']);
+    Route::put('/{category}', [CategoryController::class, 'update']);
+
+    Route::delete('/{category}', [CategoryController::class, 'destroy'])->withTrashed();
+    Route::resource('/', CategoryController::class);
 });
 //Route::group([], function () {
 //    Route::resource('category', CategoryController::class)->names('category');

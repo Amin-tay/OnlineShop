@@ -36,8 +36,21 @@
                         <td>${{$product->price}}</td>
                         <td>{{$product->quantity}}</td>
 
-                        <td><a href="/categories/{{$product->category->id}}"
-                               class="text-decoration-none text-black">{{$product->category->name}}</a></td>
+                        @if(!empty($product->category))
+                            <td>
+                                <a href="/categories/{{$product->category->id}}"
+                                   class="text-decoration-none text-black">{{$product->category->name}}
+                                </a>
+                            </td>
+
+                        @else
+                            <td>
+                                <p
+                                    class="text-decoration-none text-black">null
+                                </p>
+                            </td>
+
+                        @endif
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a href="{{ route('admin.products.edit',$product->id) }}"
